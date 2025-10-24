@@ -1,5 +1,5 @@
 // pages/api/submit.js
-import pool from '../../lib/db';
+import pool from '../../lib/db'; // Correctly import the pool
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const pool = pool();
+    // ⚠️ Removed the `const pool = pool();` line
     const connection = await pool.getConnection();
     const [result] = await connection.execute(
       'INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)',
